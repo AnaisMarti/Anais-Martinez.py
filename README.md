@@ -47,3 +47,15 @@ class ParidadMLP(nn.Module):
         self.sigmoid = nn.Sigmoid()
     # ... (el resto del código igual al main)
 ```
+# Rama-2
+```Python
+class ParidadMLP(nn.Module):
+    def __init__(self):
+        super(ParidadMLP, self).__init__()
+        self.hidden = nn.Linear(1, 10)  # <- Cambiado a 10 neuronas
+        self.relu = nn.ReLU()
+        self.output = nn.Linear(10, 1)   # <- Ajustado a 10
+        self.sigmoid = nn.Sigmoid()
+    # ... (resto igual)
+```
+
