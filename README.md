@@ -41,11 +41,17 @@ with torch.no_grad():
 class ParidadMLP(nn.Module):
     def __init__(self):
         super(ParidadMLP, self).__init__()
-        self.hidden = nn.Linear(1, 3)  # <- Cambiado a 3 neuronas
+        self.hidden = nn.Linear(1, 4)  # 4 neuronas (no 3)
         self.relu = nn.ReLU()
-        self.output = nn.Linear(3, 1)  # <- Ajustado a 3
+        self.dropout = nn.Dropout(0.3)  # Nueva regularización
+        self.output = nn.Linear(4, 1)
         self.sigmoid = nn.Sigmoid()
-    # ... (el resto del código igual al main)
+    
+    def forward(self, x):
+        x = self.relu(self.hidden(x))
+        x = self.dropout(x)  # Añadido
+        x = self.sigmoid(self.output(x))
+        return x
 ```
 # Rama-2
 ```Python
@@ -82,13 +88,12 @@ class ParidadMLP(nn.Module):
     def __init__(self):
         super(ParidadMLP, self).__init__()
         self.hidden = nn.Linear(1, 5)
-        self.tanh = nn.Tanh()           # <- Cambiado a Tanh
+        self.leaky_relu = nn.LeakyReLU(0.01)  # LeakyReLU (pendiente 0.01)
         self.output = nn.Linear(5, 1)
         self.sigmoid = nn.Sigmoid()
     
     def forward(self, x):
-        x = self.tanh(self.hidden(x))  # <- Usando Tanh
+        x = self.leaky_relu(self.hidden(x))  # Activación diferente
         x = self.sigmoid(self.output(x))
         return x
-    # ... (resto igual)
 ```
