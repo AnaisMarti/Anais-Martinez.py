@@ -58,4 +58,22 @@ class ParidadMLP(nn.Module):
         self.sigmoid = nn.Sigmoid()
     # ... (resto igual)
 ```
+# Rama-3
+```Python
+class ParidadMLP(nn.Module):
+    def __init__(self):
+        super(ParidadMLP, self).__init__()
+        self.hidden1 = nn.Linear(1, 5)
+        self.hidden2 = nn.Linear(5, 5)  # <- Segunda capa
+        self.relu = nn.ReLU()
+        self.output = nn.Linear(5, 1)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x):
+        x = self.relu(self.hidden1(x))
+        x = self.relu(self.hidden2(x))  # <- Usando segunda capa
+        x = self.sigmoid(self.output(x))
+        return x
+    # ... (resto igual)
+```
 
