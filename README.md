@@ -76,4 +76,19 @@ class ParidadMLP(nn.Module):
         return x
     # ... (resto igual)
 ```
-
+# Rama-4
+```Python
+class ParidadMLP(nn.Module):
+    def __init__(self):
+        super(ParidadMLP, self).__init__()
+        self.hidden = nn.Linear(1, 5)
+        self.tanh = nn.Tanh()           # <- Cambiado a Tanh
+        self.output = nn.Linear(5, 1)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x):
+        x = self.tanh(self.hidden(x))  # <- Usando Tanh
+        x = self.sigmoid(self.output(x))
+        return x
+    # ... (resto igual)
+```
