@@ -36,3 +36,14 @@ with torch.no_grad():
     print("Predicciones:", predictions.view(-1).tolist())
     print("Esperado    :", y.view(-1).tolist())
 ```
+# Rama-1
+```Python
+class ParidadMLP(nn.Module):
+    def __init__(self):
+        super(ParidadMLP, self).__init__()
+        self.hidden = nn.Linear(1, 3)  # <- Cambiado a 3 neuronas
+        self.relu = nn.ReLU()
+        self.output = nn.Linear(3, 1)  # <- Ajustado a 3
+        self.sigmoid = nn.Sigmoid()
+    # ... (el resto del código igual al main)
+```
